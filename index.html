@@ -1,0 +1,779 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oxford Bar & Restro | Digital Lounge & Menu</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            oxfordDark: '#080c14',
+            oxfordCard: '#0f172a',
+            oxfordBorder: '#1e293b',
+            neonCyan: '#00f2fe',
+            neonBlue: '#4facfe',
+            neonAmber: '#f5af19',
+            gold: '#e2b714'
+          },
+          fontFamily: {
+            brand: ['Cinzel', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom luxury styling and scrollbar */
+    body {
+      background-color: #070a10;
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      padding-bottom: calc(140px + env(safe-area-inset-bottom, 24px));
+    }
+    
+    .glow-cyan {
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.25);
+    }
+
+    .glow-gold {
+      box-shadow: 0 0 25px rgba(245, 175, 25, 0.2);
+    }
+
+    .neon-text-cyan {
+      text-shadow: 0 0 14px rgba(0, 242, 254, 0.5);
+    }
+
+    .neon-text-gold {
+      text-shadow: 0 0 14px rgba(245, 175, 25, 0.5);
+    }
+
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Hide default scrollbars for smooth pills */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Floating navigation bar with safe-area spacing */
+    .floating-action-bar {
+      bottom: max(16px, env(safe-area-inset-bottom, 16px));
+      padding-bottom: max(6px, env(safe-area-inset-bottom, 0px));
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
+
+  <!-- TOP BRAND HERO SECTION -->
+  <header class="relative overflow-hidden pt-8 pb-7 px-4 border-b border-slate-800/80 bg-gradient-to-b from-[#0e1726] via-[#070b12] to-[#070a10]">
+    <!-- Ambient Neon Circles -->
+    <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-10 right-4 w-40 h-40 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+    <div class="max-w-md mx-auto text-center relative z-10">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold tracking-widest uppercase bg-cyan-950/70 border border-cyan-500/30 text-cyan-400 mb-3 glow-cyan">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-cyan-400"></i>
+        Shahganj Premier Restro & Lounge
+      </div>
+
+      <!-- Main Title -->
+      <h1 class="text-3xl sm:text-4xl font-black font-brand tracking-wider text-white neon-text-cyan uppercase">
+        OXFORD
+      </h1>
+      <p class="text-xs sm:text-sm font-semibold tracking-[0.25em] text-amber-400 uppercase mt-1 mb-3 neon-text-gold">
+        Bar • Restro • Lounge
+      </p>
+
+      <!-- Address Pill -->
+      <a href="https://maps.google.com/?q=OP+Tower+Azamgarh+Road+Shahganj" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs text-slate-300 bg-slate-900/90 hover:bg-slate-800/90 border border-slate-700/60 rounded-full transition-all duration-200 text-center leading-snug">
+        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-400 shrink-0"></i>
+        <span>OP Tower, Azamgarh Rd, Shahganj</span>
+      </a>
+
+      <!-- Quick Contact Actions -->
+      <div class="grid grid-cols-2 gap-3 mt-5">
+        <a href="tel:9793929745" class="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-white font-semibold text-xs tracking-wide transition shadow-sm active:scale-95">
+          <i data-lucide="phone-call" class="w-4 h-4 text-cyan-400"></i>
+          Call 97939 29745
+        </a>
+        <button onclick="openBookingModal()" class="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs tracking-wide transition shadow-lg shadow-emerald-950/60 active:scale-95">
+          <i data-lucide="calendar-check" class="w-4 h-4 text-white"></i>
+          Book VIP Table
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- SEARCH & CATEGORY NAVIGATION -->
+  <section class="sticky top-0 z-30 bg-[#070a10]/95 backdrop-blur-md border-b border-slate-800/90 py-3 px-4">
+    <div class="max-w-md mx-auto">
+      <!-- Search Input -->
+      <div class="relative mb-3">
+        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Search items (Paneer, Biryani, Mojito...)" 
+          onkeyup="filterItems()"
+          class="w-full bg-slate-900/90 border border-slate-800 rounded-xl pl-10 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition"
+        />
+      </div>
+
+      <!-- Categories Pills -->
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5" id="categoryContainer">
+        <button onclick="setCategory('all')" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-gradient-to-r from-cyan-500 to-blue-600 text-black shadow-md shadow-cyan-900/40" data-cat="all">
+          All Special
+        </button>
+        <button onclick="setCategory('starters')" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition-all" data-cat="starters">
+          Starters & Bites
+        </button>
+        <button onclick="setCategory('mains')" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition-all" data-cat="mains">
+          Main Course
+        </button>
+        <button onclick="setCategory('beverages')" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition-all" data-cat="beverages">
+          Mocktails & Drinks
+        </button>
+        <button onclick="setCategory('lounge')" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition-all" data-cat="lounge">
+          Lounge Specials
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN MENU CONTAINER -->
+  <main class="max-w-md mx-auto w-full px-4 pt-4 pb-32 flex-1">
+    
+    <!-- Filter status & Selected Order Tray trigger -->
+    <div class="flex items-center justify-between mb-3 text-xs text-slate-400">
+      <span id="itemsCountText">Displaying curated choices</span>
+      <button onclick="viewOrderTray()" id="trayBadge" class="hidden text-cyan-400 font-bold flex items-center gap-1 bg-cyan-950/40 px-2.5 py-1 rounded-lg border border-cyan-800/40 hover:bg-cyan-900/40 transition">
+        <i data-lucide="receipt" class="w-3.5 h-3.5"></i>
+        <span>My Selection (<span id="trayCount">0</span>)</span>
+      </button>
+    </div>
+
+    <!-- Items Grid List -->
+    <div id="menuItemsGrid" class="space-y-3">
+      <!-- Dynamic Rendering will happen here via JS -->
+    </div>
+
+    <!-- QR CODE DEMO & BRAND HIGHLIGHT CARD -->
+    <div class="mt-8 rounded-2xl glass-panel p-5 border border-slate-800/90 text-center relative overflow-hidden">
+      <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl"></div>
+      <div class="w-12 h-12 mx-auto rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-black mb-3 font-bold shadow-lg shadow-cyan-950">
+        <i data-lucide="qr-code" class="w-6 h-6"></i>
+      </div>
+      <h3 class="text-sm font-bold text-white tracking-wide">Contactless Digital QR Menu</h3>
+      <p class="text-xs text-slate-400 mt-1 max-w-xs mx-auto">
+        Table-top scan facility for guests at Oxford Bar & Restro, Shahganj. Fast, clean & hassle-free.
+      </p>
+      
+      <button onclick="openQRModal()" class="mt-3 inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-cyan-300 bg-cyan-950/70 border border-cyan-500/30 rounded-lg hover:bg-cyan-900/50 transition">
+        <i data-lucide="maximize" class="w-3.5 h-3.5"></i>
+        Preview Table Standee QR
+      </button>
+    </div>
+
+    <!-- LOUNGE FEATURES CHIPS -->
+    <div class="grid grid-cols-2 gap-3 mt-4 text-center">
+      <div class="glass-panel p-3 rounded-xl border border-slate-800/60">
+        <i data-lucide="music" class="w-4 h-4 text-amber-400 mx-auto mb-1"></i>
+        <div class="text-[11px] font-bold text-white">Chilled Ambiance</div>
+        <div class="text-[10px] text-slate-400">Dim Neon Lights & Music</div>
+      </div>
+      <div class="glass-panel p-3 rounded-xl border border-slate-800/60">
+        <i data-lucide="cake" class="w-4 h-4 text-cyan-400 mx-auto mb-1"></i>
+        <div class="text-[11px] font-bold text-white">Party Bookings</div>
+        <div class="text-[10px] text-slate-400">Birthdays & Celebrations</div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- BOTTOM FLOATING ACTION BAR (Lifted above navigation buttons & gestures) -->
+  <div class="fixed inset-x-0 floating-action-bar px-4 z-40 pointer-events-none">
+    <div class="max-w-md mx-auto flex items-center gap-3 p-2 bg-[#080d17]/95 backdrop-blur-xl border border-cyan-500/30 rounded-2xl shadow-2xl shadow-black/90 pointer-events-auto">
+      <!-- Tray button -->
+      <button onclick="viewOrderTray()" class="relative p-3 rounded-xl bg-slate-900 border border-slate-700/80 text-slate-200 hover:text-white transition active:scale-95">
+        <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+        <span id="floatingTrayDot" class="hidden absolute -top-1 -right-1 w-4 h-4 bg-cyan-400 text-black text-[10px] font-black rounded-full flex items-center justify-center">0</span>
+      </button>
+
+      <!-- Primary Reserve Table CTA -->
+      <button onclick="openBookingModal()" class="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 text-black font-extrabold text-xs sm:text-sm tracking-wide flex items-center justify-center gap-2 shadow-lg shadow-cyan-950/60 active:scale-95 transition">
+        <i data-lucide="calendar" class="w-4 h-4 text-black"></i>
+        <span>Reserve Table / WhatsApp Order</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- TABLE BOOKING MODAL -->
+  <div id="bookingModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-[#0b1220] border border-slate-800 w-full max-w-md rounded-t-3xl sm:rounded-2xl p-6 shadow-2xl relative animate-fade-in max-h-[90vh] overflow-y-auto">
+      <!-- Close button -->
+      <button onclick="closeBookingModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white p-1">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="text-left mb-5">
+        <div class="text-[10px] tracking-widest uppercase font-bold text-cyan-400">Direct Reservation</div>
+        <h2 class="text-lg font-bold text-white font-brand mt-0.5">Book A Table at Oxford</h2>
+        <p class="text-xs text-slate-400">Fill details & confirmation opens directly on WhatsApp.</p>
+      </div>
+
+      <!-- Booking Form -->
+      <form id="reservationForm" onsubmit="submitReservation(event)" class="space-y-3.5 text-left text-xs">
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Your Full Name</label>
+          <input type="text" id="custName" required placeholder="e.g. Rahul Verma" class="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-400 text-xs">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Date</label>
+            <input type="date" id="bookingDate" required class="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-cyan-400 text-xs">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Guests Count</label>
+            <select id="guestCount" class="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-cyan-400 text-xs">
+              <option value="2 Guests">2 Guests (Couple/Friends)</option>
+              <option value="4 Guests">4 Guests</option>
+              <option value="6 Guests">6 Guests (Group)</option>
+              <option value="8+ Large Party">8+ (Party / Celebration)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Time Slot</label>
+            <select id="timeSlot" class="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-cyan-400 text-xs">
+              <option value="01:00 PM (Lunch)">01:00 PM (Lunch)</option>
+              <option value="03:30 PM (Afternoon)">03:30 PM (Afternoon)</option>
+              <option value="07:00 PM (Evening Vibes)">07:00 PM (Evening)</option>
+              <option value="08:30 PM (Dinner Rush)">08:30 PM (Dinner)</option>
+              <option value="10:00 PM (Night Lounge)">10:00 PM (Late Night)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-medium mb-1">Seating Preference</label>
+            <select id="seatingType" class="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-cyan-400 text-xs">
+              <option value="Lounge & Music Zone">Lounge & Music Area</option>
+              <option value="Family Dining Area">Family Dining</option>
+              <option value="Private VIP Corner">Private Corner</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Special Request (Optional)</label>
+          <input type="text" id="specialNotes" placeholder="e.g. Birthday cake space, quiet zone, extra ice" class="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-400 text-xs">
+        </div>
+
+        <!-- Included Cart Items Summary in Booking -->
+        <div id="formTrayNotice" class="hidden p-2.5 rounded-xl bg-slate-900/80 border border-cyan-900/50 text-[11px] text-cyan-300">
+          <i data-lucide="check-circle" class="w-3.5 h-3.5 inline mr-1 text-cyan-400"></i>
+          Your selected menu items will be automatically sent in the WhatsApp message.
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-xs tracking-wider uppercase transition shadow-lg shadow-emerald-950 flex items-center justify-center gap-2 mt-4">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          Send Booking via WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ORDER TRAY / SELECTION MODAL -->
+  <div id="trayModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-[#0b1220] border border-slate-800 w-full max-w-md rounded-t-3xl sm:rounded-2xl p-6 shadow-2xl relative max-h-[85vh] flex flex-col">
+      <button onclick="closeTrayModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white p-1">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="text-left mb-4">
+        <div class="text-[10px] tracking-widest uppercase font-bold text-cyan-400">Order Estimation</div>
+        <h2 class="text-lg font-bold text-white font-brand">Selected Menu Items</h2>
+      </div>
+
+      <div id="trayItemsList" class="flex-1 overflow-y-auto space-y-2.5 pr-1 text-xs">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div class="border-t border-slate-800 pt-3 mt-3 text-xs">
+        <div class="flex justify-between text-slate-300 mb-1">
+          <span>Total Estimation</span>
+          <span id="trayTotalSum" class="font-bold text-cyan-400 text-sm">₹0</span>
+        </div>
+        <p class="text-[10px] text-slate-500 mb-3">*Prices subject to taxes & actual serving.</p>
+        
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="clearTray()" class="py-2.5 px-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white text-xs font-semibold">
+            Clear All
+          </button>
+          <button onclick="openBookingFromTray()" class="py-2.5 px-3 rounded-xl bg-cyan-400 text-black font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-cyan-950">
+            Confirm & Reserve
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE QR PREVIEW MODAL -->
+  <div id="qrModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-[#0f172a] border border-slate-700 w-full max-w-xs rounded-2xl p-6 text-center shadow-2xl relative">
+      <button onclick="closeQRModal()" class="absolute top-3 right-3 text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div class="font-brand font-black text-amber-400 tracking-wider text-sm mb-1 uppercase">OXFORD BAR & RESTRO</div>
+      <div class="text-[10px] text-slate-400 uppercase tracking-widest mb-4">Table No. #04 • Shahganj</div>
+
+      <!-- Mock Standee QR Graphic -->
+      <div class="bg-white p-4 rounded-2xl shadow-inner inline-block mx-auto mb-4 border-4 border-cyan-400">
+        <!-- High resolution clean visual QR code from QRServer API -->
+        <img 
+          src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://editsbysudhakar.github.io/oxford-restro/&color=050811" 
+          alt="Oxford Restro QR" 
+          class="w-40 h-40 object-contain mx-auto"
+        />
+      </div>
+
+      <p class="text-[11px] text-slate-300 font-medium">Scan to explore live digital menu on your mobile device</p>
+      <div class="mt-4 pt-3 border-t border-slate-800 text-[10px] text-slate-500">
+        Standee designed for Oxford Bar & Restro, Azamgarh Rd.
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Oxford Restro Data Set
+    const menuData = [
+      {
+        id: 1,
+        name: "Paneer Tikka Angara",
+        category: "starters",
+        veg: true,
+        price: 240,
+        desc: "Charcoal-grilled cottage cheese marinated in hung curd and smoky royal spices.",
+        tag: "Chef Special"
+      },
+      {
+        id: 2,
+        name: "Crispy Chilli Chicken",
+        category: "starters",
+        veg: false,
+        price: 290,
+        desc: "Diced chicken tossed with crunchy bell peppers, garlic cloves, and fiery red chili glaze.",
+        tag: "Bestseller"
+      },
+      {
+        id: 3,
+        name: "Tandoori Murgh (Full)",
+        category: "starters",
+        veg: false,
+        price: 440,
+        desc: "Classic oven-roasted whole spring chicken coated in Lucknowi tandoori masala.",
+        tag: "Authentic"
+      },
+      {
+        id: 4,
+        name: "Crispy Corn Pepper Salt",
+        category: "starters",
+        veg: true,
+        price: 190,
+        desc: "Golden sweet corn kernels tossed with crushed black pepper and scallions.",
+        tag: "Lounge Favorite"
+      },
+      {
+        id: 5,
+        name: "Butter Chicken Oxford Royal",
+        category: "mains",
+        veg: false,
+        price: 360,
+        desc: "Velvety butter-tomato gravy flavored with kasuri methi & tender boneless tandoori chicken.",
+        tag: "Must Try"
+      },
+      {
+        id: 6,
+        name: "Kadhai Paneer Jaunpuri",
+        category: "mains",
+        veg: true,
+        price: 260,
+        desc: "Rich cottage cheese batons tossed with coarsely pounded coriander and bell peppers.",
+        tag: "Popular"
+      },
+      {
+        id: 7,
+        name: "Dal Makhani Dum Pukht",
+        category: "mains",
+        veg: true,
+        price: 210,
+        desc: "Slow-simmered black lentils cooked overnight with white butter and rich cream.",
+        tag: ""
+      },
+      {
+        id: 8,
+        name: "Mutton Rogan Josh",
+        category: "mains",
+        veg: false,
+        price: 420,
+        desc: "Tender lamb pieces stewed in Kashmiri red chili and aromatic whole spices broth.",
+        tag: "Rich Gravy"
+      },
+      {
+        id: 9,
+        name: "Blue Electric Lagoon",
+        category: "beverages",
+        veg: true,
+        price: 150,
+        desc: "Refreshing curacao citrus blend topped with sparkling soda and crushed mint.",
+        tag: "Mocktail"
+      },
+      {
+        id: 10,
+        name: "Classic Mint Mojito",
+        category: "beverages",
+        veg: true,
+        price: 130,
+        desc: "Muddled fresh garden mint, lime wedges, simple syrup and chilled fizz.",
+        tag: "Chilled"
+      },
+      {
+        id: 11,
+        name: "Oxford Special Iced Frappe",
+        category: "beverages",
+        veg: true,
+        price: 160,
+        desc: "Double shot espresso blended with vanilla bean ice cream and chocolate drizzle.",
+        tag: ""
+      },
+      {
+        id: 12,
+        name: "Premium Herbal Lounge Flavour",
+        category: "lounge",
+        veg: true,
+        price: 499,
+        desc: "Exclusive non-tobacco herbal aroma blend with chilling ice pipe for evening relaxation.",
+        tag: "Lounge Special"
+      },
+      {
+        id: 13,
+        name: "Sizzling Brownie with Ice Cream",
+        category: "lounge",
+        veg: true,
+        price: 190,
+        desc: "Hot walnut fudge brownie on hot iron plate topped with vanilla scoop & molten dark fudge.",
+        tag: "Sweet Craving"
+      }
+    ];
+
+    // State Variables
+    let currentCategory = 'all';
+    let searchQuery = '';
+    let tray = []; // array of { item, count }
+
+    // Init function
+    document.addEventListener("DOMContentLoaded", () => {
+      // Set default reservation date to tomorrow
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const dateInput = document.getElementById("bookingDate");
+      if(dateInput) {
+        dateInput.value = tomorrow.toISOString().split('T')[0];
+      }
+      renderMenu();
+      lucide.createIcons();
+    });
+
+    // Category Filter Handler
+    function setCategory(cat) {
+      currentCategory = cat;
+      // Update UI active buttons
+      const buttons = document.querySelectorAll('.cat-btn');
+      buttons.forEach(btn => {
+        if(btn.getAttribute('data-cat') === cat) {
+          btn.className = "cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-gradient-to-r from-cyan-400 to-blue-600 text-black shadow-md shadow-cyan-900/40";
+        } else {
+          btn.className = "cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition-all";
+        }
+      });
+      renderMenu();
+    }
+
+    // Search query filter
+    function filterItems() {
+      searchQuery = document.getElementById("searchInput").value.toLowerCase().trim();
+      renderMenu();
+    }
+
+    // Render Function
+    function renderMenu() {
+      const container = document.getElementById("menuItemsGrid");
+      const filtered = menuData.filter(item => {
+        const matchesCategory = (currentCategory === 'all') || (item.category === currentCategory);
+        const matchesSearch = item.name.toLowerCase().includes(searchQuery) || item.desc.toLowerCase().includes(searchQuery);
+        return matchesCategory && matchesSearch;
+      });
+
+      document.getElementById("itemsCountText").innerText = `${filtered.length} Dishes & Drinks Available`;
+
+      if(filtered.length === 0) {
+        container.innerHTML = `
+          <div class="py-12 text-center text-slate-500">
+            <i data-lucide="utensils" class="w-8 h-8 mx-auto mb-2 opacity-40"></i>
+            <p class="text-xs">No items found matching your search.</p>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      container.innerHTML = filtered.map(dish => {
+        const inTray = tray.find(t => t.item.id === dish.id);
+        const qty = inTray ? inTray.count : 0;
+
+        return `
+          <div class="glass-panel p-3.5 rounded-2xl border border-slate-800/90 flex flex-col justify-between hover:border-slate-700 transition">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <!-- Veg / Non-Veg Indicator -->
+                  <span class="inline-flex items-center justify-center w-3.5 h-3.5 border ${dish.veg ? 'border-emerald-500' : 'border-rose-500'} rounded-sm p-[2px]">
+                    <span class="w-1.5 h-1.5 rounded-full ${dish.veg ? 'bg-emerald-500' : 'bg-rose-500'}"></span>
+                  </span>
+                  
+                  <h4 class="text-xs sm:text-sm font-bold text-white tracking-wide">${dish.name}</h4>
+                  
+                  ${dish.tag ? `
+                    <span class="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/30">
+                      ${dish.tag}
+                    </span>
+                  ` : ''}
+                </div>
+                <p class="text-[11px] text-slate-400 line-clamp-2 leading-relaxed">${dish.desc}</p>
+              </div>
+
+              <!-- Price -->
+              <div class="text-right shrink-0">
+                <span class="text-sm sm:text-base font-extrabold text-cyan-400">₹${dish.price}</span>
+              </div>
+            </div>
+
+            <!-- Action footer of item -->
+            <div class="mt-3 pt-2.5 border-t border-slate-800/60 flex items-center justify-between text-xs">
+              <span class="text-[10px] text-slate-500 capitalize tracking-wider">${dish.category} Special</span>
+
+              ${qty === 0 ? `
+                <button onclick="addToTray(${dish.id})" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-900/50 text-[11px] font-bold flex items-center gap-1 active:scale-95 transition">
+                  <i data-lucide="plus" class="w-3 h-3"></i> Add
+                </button>
+              ` : `
+                <div class="flex items-center gap-2 bg-slate-900 px-2 py-0.5 rounded-lg border border-cyan-500/40">
+                  <button onclick="removeFromTray(${dish.id})" class="text-slate-400 hover:text-white font-black text-sm px-1">-</button>
+                  <span class="text-xs font-bold text-cyan-300">${qty}</span>
+                  <button onclick="addToTray(${dish.id})" class="text-cyan-400 hover:text-cyan-200 font-black text-sm px-1">+</button>
+                </div>
+              `}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    // Tray State Functions
+    function addToTray(dishId) {
+      const dish = menuData.find(d => d.id === dishId);
+      const existing = tray.find(t => t.item.id === dishId);
+      if(existing) {
+        existing.count += 1;
+      } else {
+        tray.push({ item: dish, count: 1 });
+      }
+      updateTrayUI();
+      renderMenu();
+    }
+
+    function removeFromTray(dishId) {
+      const existing = tray.find(t => t.item.id === dishId);
+      if(existing) {
+        existing.count -= 1;
+        if(existing.count <= 0) {
+          tray = tray.filter(t => t.item.id !== dishId);
+        }
+      }
+      updateTrayUI();
+      renderMenu();
+    }
+
+    function clearTray() {
+      tray = [];
+      updateTrayUI();
+      renderMenu();
+      closeTrayModal();
+    }
+
+    function updateTrayUI() {
+      const totalCount = tray.reduce((sum, i) => sum + i.count, 0);
+      const trayBadge = document.getElementById("trayBadge");
+      const trayCount = document.getElementById("trayCount");
+      const floatingDot = document.getElementById("floatingTrayDot");
+      const formTrayNotice = document.getElementById("formTrayNotice");
+
+      if(totalCount > 0) {
+        trayBadge.classList.remove("hidden");
+        floatingDot.classList.remove("hidden");
+        trayCount.innerText = totalCount;
+        floatingDot.innerText = totalCount;
+        if(formTrayNotice) formTrayNotice.classList.remove("hidden");
+      } else {
+        trayBadge.classList.add("hidden");
+        floatingDot.classList.add("hidden");
+        if(formTrayNotice) formTrayNotice.classList.add("hidden");
+      }
+    }
+
+    // Modal Control: Reservation
+    function openBookingModal() {
+      document.getElementById("bookingModal").classList.remove("hidden");
+    }
+
+    function closeBookingModal() {
+      document.getElementById("bookingModal").classList.add("hidden");
+    }
+
+    // Modal Control: Tray
+    function viewOrderTray() {
+      const modal = document.getElementById("trayModal");
+      const list = document.getElementById("trayItemsList");
+      const totalDisplay = document.getElementById("trayTotalSum");
+
+      if(tray.length === 0) {
+        list.innerHTML = `
+          <div class="py-10 text-center text-slate-500">
+            <p>Your item tray is currently empty.</p>
+            <p class="text-[11px] text-slate-600 mt-1">Tap + on any dish to prepare your order preview.</p>
+          </div>
+        `;
+        totalDisplay.innerText = "₹0";
+      } else {
+        let total = 0;
+        list.innerHTML = tray.map(entry => {
+          const itemCost = entry.item.price * entry.count;
+          total += itemCost;
+          return `
+            <div class="flex items-center justify-between p-2 rounded-xl bg-slate-900 border border-slate-800">
+              <div>
+                <div class="font-bold text-white text-xs">${entry.item.name}</div>
+                <div class="text-[10px] text-slate-400">₹${entry.item.price} x ${entry.count}</div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-cyan-400 text-xs">₹${itemCost}</span>
+                <button onclick="removeFromTray(${entry.item.id})" class="text-rose-400 hover:text-rose-300 p-1">
+                  <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('');
+        totalDisplay.innerText = `₹${total}`;
+      }
+
+      modal.classList.remove("hidden");
+      lucide.createIcons();
+    }
+
+    function closeTrayModal() {
+      document.getElementById("trayModal").classList.add("hidden");
+    }
+
+    function openBookingFromTray() {
+      closeTrayModal();
+      openBookingModal();
+    }
+
+    // Modal Control: QR Code Preview
+    function openQRModal() {
+      document.getElementById("qrModal").classList.remove("hidden");
+    }
+
+    function closeQRModal() {
+      document.getElementById("qrModal").classList.add("hidden");
+    }
+
+    // WhatsApp Submit Handler
+    function submitReservation(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById("custName").value.trim();
+      const date = document.getElementById("bookingDate").value;
+      const guests = document.getElementById("guestCount").value;
+      const time = document.getElementById("timeSlot").value;
+      const seating = document.getElementById("seatingType").value;
+      const notes = document.getElementById("specialNotes").value.trim();
+
+      // Build message
+      let message = `*TABLE RESERVATION REQUEST - OXFORD BAR & RESTRO*\n`;
+      message += `--------------------------------------\n`;
+      message += `👤 *Name:* ${name}\n`;
+      message += `📅 *Date:* ${date}\n`;
+      message += `⏰ *Time:* ${time}\n`;
+      message += `👥 *Guests:* ${guests}\n`;
+      message += `🛋️ *Seating:* ${seating}\n`;
+      
+      if(notes) {
+        message += `📝 *Note:* ${notes}\n`;
+      }
+
+      if(tray.length > 0) {
+        message += `\n🍴 *Pre-Selected Items:*\n`;
+        tray.forEach(t => {
+          message += `• ${t.item.name} (${t.count}x) - ₹${t.item.price * t.count}\n`;
+        });
+        const total = tray.reduce((sum, i) => sum + (i.item.price * i.count), 0);
+        message += `*Total Estimate:* ₹${total}\n`;
+      }
+
+      message += `--------------------------------------\n`;
+      message += `Location: Shahganj Branch`;
+
+      // Oxford Shahganj Contact Number
+      const phone = "919793929745";
+      const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+      // Open WhatsApp in new tab
+      window.open(waUrl, '_blank');
+      closeBookingModal();
+    }
+  </script>
+</body>
+</html>
+```
